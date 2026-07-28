@@ -72,10 +72,11 @@ Use exactly:
 /Users/konalyn/Documents/FPT Materials/DPL302m/private-checkpoints/github-cleanup-2026-07-28
 ```
 
-Before creating it, obtain the user's confirmation that its parent is local,
-private, and not shared or cloud-synced. Apply directory mode `0700` and file
-mode `0600`. Never stage, upload, release, or quote private file contents from
-this directory.
+This directory does not exist in the audited starting state; execution creates
+it beneath the existing local DPL302m parent. Before creation, verify the parent
+resolves to the local APFS data volume and is not a symlink. Apply directory
+mode `0700` and file mode `0600`. Never stage, upload, release, or quote private
+file contents from this directory.
 
 ---
 
@@ -108,16 +109,22 @@ Expected: GitHub CLI is available, the active account is exactly
 `Therockycloud`, Git uses HTTPS, and the token has repository write access.
 Never print the token.
 
-- [ ] **Step 2: Confirm the private rollback parent**
+- [ ] **Step 2: Verify the local rollback parent**
 
-Ask the user to confirm that:
+Run:
 
-```text
-/Users/konalyn/Documents/FPT Materials/DPL302m/private-checkpoints
+```bash
+test -d '/Users/konalyn/Documents/FPT Materials/DPL302m'
+test ! -L '/Users/konalyn/Documents/FPT Materials/DPL302m'
+realpath '/Users/konalyn/Documents/FPT Materials/DPL302m'
+df -h '/Users/konalyn/Documents/FPT Materials/DPL302m'
+test ! -e '/Users/konalyn/Documents/FPT Materials/DPL302m/private-checkpoints'
 ```
 
-is local, private, and not shared or cloud-synced. Stop before Task 2 if that
-fact cannot be confirmed.
+Expected: the parent resolves to
+`/System/Volumes/Data/Users/konalyn/Documents/FPT Materials/DPL302m`, the
+filesystem is the local APFS data volume, and `private-checkpoints` is absent.
+An existing or symlinked target stops execution for inspection.
 
 - [ ] **Step 3: Create the private rollback directory**
 
