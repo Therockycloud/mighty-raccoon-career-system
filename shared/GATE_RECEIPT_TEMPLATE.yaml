@@ -1,0 +1,48 @@
+schemaVersion: 1
+receiptId: ""
+sequence: 0
+project: ""
+stage: ""
+status: pending
+
+previousReceipt:
+  path: null
+  sha256: null
+
+blueprint:
+  path: ""
+  sha256: ""
+
+projectState:
+  path: PROJECT_STATE.md
+  sha256: ""
+
+source:
+  commit: ""
+  cleanWorktreeVerified: false
+  dependencyLockSha256: ""
+  allowedPostSourcePaths:
+    - evidence/**
+    - docs/gates/**
+    - PROJECT_STATE.md
+
+evidence:
+  packetPath: ""
+  packetSha256: ""
+  rawRunManifestPath: ""
+  rawRunManifestSha256: ""
+
+accepted:
+  kind: ""
+  configPath: ""
+  configSha256: ""
+  artifactOrPublisherPath: ""
+  artifactOrPublisherSha256: ""
+
+approval:
+  actor: ""
+  approvedAt: null
+  phrase: ""
+
+nextAllowedStage: null
+notes: ""

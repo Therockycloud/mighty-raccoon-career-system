@@ -1,0 +1,258 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mighty-raccoon.local/schemas/gate-receipt-v1.json",
+  "title": "Mighty Raccoon stage gate receipt",
+  "$defs": {
+    "repoPath": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "^(?!/)(?!\\\\)(?!\\./)(?!.*:)(?!.*(?:^|/)\\.\\.(?:/|$))(?!.*\\\\).+$"
+    },
+    "repoPathOrEmpty": {
+      "anyOf": [
+        { "const": "" },
+        { "$ref": "#/$defs/repoPath" }
+      ]
+    },
+    "sha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "sha256OrEmpty": {
+      "type": "string",
+      "pattern": "^(?:|[a-f0-9]{64})$"
+    },
+    "gitObjectId": {
+      "type": "string",
+      "pattern": "^(?:[a-f0-9]{40}|[a-f0-9]{64})$"
+    }
+  },
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "receiptId",
+    "sequence",
+    "project",
+    "stage",
+    "status",
+    "previousReceipt",
+    "blueprint",
+    "projectState",
+    "source",
+    "evidence",
+    "accepted",
+    "approval",
+    "nextAllowedStage",
+    "notes"
+  ],
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "receiptId": { "type": "string" },
+    "sequence": { "type": "integer", "minimum": 0 },
+    "project": { "type": "string" },
+    "stage": { "type": "string" },
+    "status": { "enum": ["pending", "approved", "rejected"] },
+    "previousReceipt": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["path", "sha256"],
+      "properties": {
+        "path": {
+          "anyOf": [
+            { "$ref": "#/$defs/repoPath" },
+            { "type": "null" }
+          ]
+        },
+        "sha256": {
+          "anyOf": [
+            { "$ref": "#/$defs/sha256" },
+            { "type": "null" }
+          ]
+        }
+      }
+    },
+    "blueprint": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["path", "sha256"],
+      "properties": {
+        "path": { "$ref": "#/$defs/repoPathOrEmpty" },
+        "sha256": { "$ref": "#/$defs/sha256OrEmpty" }
+      }
+    },
+    "projectState": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["path", "sha256"],
+      "properties": {
+        "path": { "$ref": "#/$defs/repoPathOrEmpty" },
+        "sha256": { "$ref": "#/$defs/sha256OrEmpty" }
+      }
+    },
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "commit",
+        "cleanWorktreeVerified",
+        "dependencyLockSha256",
+        "allowedPostSourcePaths"
+      ],
+      "properties": {
+        "commit": {
+          "type": "string",
+          "pattern": "^(?:|[a-f0-9]{40}|[a-f0-9]{64})$"
+        },
+        "cleanWorktreeVerified": { "type": "boolean" },
+        "dependencyLockSha256": { "$ref": "#/$defs/sha256OrEmpty" },
+        "allowedPostSourcePaths": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "enum": ["evidence/**", "docs/gates/**", "PROJECT_STATE.md"]
+          }
+        }
+      }
+    },
+    "evidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "packetPath",
+        "packetSha256",
+        "rawRunManifestPath",
+        "rawRunManifestSha256"
+      ],
+      "properties": {
+        "packetPath": { "$ref": "#/$defs/repoPathOrEmpty" },
+        "packetSha256": { "$ref": "#/$defs/sha256OrEmpty" },
+        "rawRunManifestPath": { "$ref": "#/$defs/repoPathOrEmpty" },
+        "rawRunManifestSha256": { "$ref": "#/$defs/sha256OrEmpty" }
+      }
+    },
+    "accepted": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "kind",
+        "configPath",
+        "configSha256",
+        "artifactOrPublisherPath",
+        "artifactOrPublisherSha256"
+      ],
+      "properties": {
+        "kind": {
+          "enum": ["", "model", "index", "publisher", "report", "dataset", "release"]
+        },
+        "configPath": { "$ref": "#/$defs/repoPathOrEmpty" },
+        "configSha256": { "$ref": "#/$defs/sha256OrEmpty" },
+        "artifactOrPublisherPath": { "$ref": "#/$defs/repoPathOrEmpty" },
+        "artifactOrPublisherSha256": { "$ref": "#/$defs/sha256OrEmpty" }
+      }
+    },
+    "approval": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["actor", "approvedAt", "phrase"],
+      "properties": {
+        "actor": { "type": "string" },
+        "approvedAt": { "type": ["string", "null"] },
+        "phrase": { "type": "string" }
+      }
+    },
+    "nextAllowedStage": { "type": ["string", "null"] },
+    "notes": { "type": "string" }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": { "sequence": { "minimum": 1 } },
+        "required": ["sequence"]
+      },
+      "then": {
+        "properties": {
+          "previousReceipt": {
+            "properties": {
+              "path": { "type": "string", "minLength": 1 },
+              "sha256": { "$ref": "#/$defs/sha256" }
+            }
+          }
+        }
+      },
+      "else": {
+        "properties": {
+          "previousReceipt": {
+            "properties": {
+              "path": { "type": "null" },
+              "sha256": { "type": "null" }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": { "status": { "const": "approved" } },
+        "required": ["status"]
+      },
+      "then": {
+        "properties": {
+          "receiptId": { "minLength": 1 },
+          "project": { "minLength": 1 },
+          "stage": { "minLength": 1 },
+          "blueprint": {
+            "properties": {
+              "path": { "$ref": "#/$defs/repoPath" },
+              "sha256": { "$ref": "#/$defs/sha256" }
+            }
+          },
+          "projectState": {
+            "properties": {
+              "path": { "$ref": "#/$defs/repoPath" },
+              "sha256": { "$ref": "#/$defs/sha256" }
+            }
+          },
+          "source": {
+            "properties": {
+              "commit": { "$ref": "#/$defs/gitObjectId" },
+              "cleanWorktreeVerified": { "const": true },
+              "dependencyLockSha256": { "$ref": "#/$defs/sha256" }
+            }
+          },
+          "evidence": {
+            "properties": {
+              "packetPath": { "$ref": "#/$defs/repoPath" },
+              "packetSha256": { "$ref": "#/$defs/sha256" },
+              "rawRunManifestPath": { "$ref": "#/$defs/repoPath" },
+              "rawRunManifestSha256": { "$ref": "#/$defs/sha256" }
+            }
+          },
+          "accepted": {
+            "properties": {
+              "kind": {
+                "enum": ["model", "index", "publisher", "report", "dataset", "release"]
+              },
+              "configPath": { "$ref": "#/$defs/repoPath" },
+              "configSha256": { "$ref": "#/$defs/sha256" },
+              "artifactOrPublisherPath": { "$ref": "#/$defs/repoPath" },
+              "artifactOrPublisherSha256": { "$ref": "#/$defs/sha256" }
+            }
+          },
+          "approval": {
+            "properties": {
+              "actor": { "minLength": 1 },
+              "approvedAt": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "phrase": { "minLength": 1 }
+            }
+          },
+          "nextAllowedStage": { "type": "string", "minLength": 1 }
+        }
+      }
+    }
+  ]
+}
