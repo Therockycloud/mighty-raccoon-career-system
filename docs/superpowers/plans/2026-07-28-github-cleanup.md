@@ -2,6 +2,26 @@
 
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
+## Execution record — 2026-07-28
+
+| Task | Result | Immutable result |
+|---|---|---|
+| 1–2. Rollback capture | Complete | Private mode-`0700` checkpoint; verified PDL TAR SHA-256 recorded privately |
+| 3. PDL checkpoint | Complete | checkpoint `7e91a34d22e0f74de4ce3dfa206f864cb0050dab`; final `main` `6910276d5260d387f042cdafb2e6aa87144811db` |
+| 4. FaceNet privacy guard | Complete | checkpoint `9bccee343397395cb5bb3658bf3de8c541f8c070`; final `main` `fd1afb254e0fb22c84d52ebf6078646298334621` |
+| 5. PDL presentation | Pass | metadata applied; current public docs contain zero targeted student IDs |
+| 6. FaceNet presentation | Partial / unpinned | privacy docs and 8 deterministic tests pass; no calibrated public biometric evaluation; Docker daemon unavailable |
+| 7. Recommender | Pass | `e3ba2e82d8d20e3d7f5442f32c3c16d58e488666`; NMF metrics reproduced within `1e-10` |
+| 8. `fpt-hub` | Gate failed | unchanged at `b1ec045df74ee2add1f9f2f196958f5e85eb53bb`; no promotion metadata |
+| 9. Profile repository | Partial | README `15e419ac9862799e71f9653802d76d4fd2850ac7`; account name/bio update blocked by missing `user` scope |
+| 10. Archive set | Complete | exact eight approved repositories archived and verified public |
+| 11. Pins | Intentionally skipped | zero pins; FaceNet evaluation gate did not pass |
+| 12. Verification/report | Complete | `reports/github-cleanup-2026-07-28.md` |
+
+Execution used inline, serial review. Failed or unavailable gates were recorded
+without weakening them. Detailed observed commands, outcomes, boundaries, and
+rollback instructions are in the final report.
+
 **Goal:** Turn `Therockycloud` into a focused, honest AI-engineering internship profile while preserving recoverability, attribution, private biometric data, and normal Git history.
 
 **Architecture:** Execute a serial, fail-closed cleanup. Capture rollback evidence first, create immutable checkpoints for the two supplied local repositories, repair each active repository on its own branch, create the profile only from verified claims, archive exactly the approved eight repositories one at a time, and set pins only when their readiness gates pass. A failed privacy, ownership, test, or content-rights gate blocks promotion without blocking safe independent work.
@@ -247,7 +267,6 @@ Expected:
 Run:
 
 ```bash
-git -C '/Users/konalyn/Documents/FPT Materials/DPL302m/PDL302m_project' diff --check
 git -C '/Users/konalyn/Documents/FPT Materials/DPL302m/PDL302m_project' diff --name-only
 ```
 
@@ -266,7 +285,11 @@ reports/release/Bang_Dong_Gop_Du_An.docx
 reports/release/Report_4_Final_Report.docx
 ```
 
-Expected: `diff --check` has no output and no path outside the list appears.
+Expected: no path outside the list appears. The refreshed execution audit found
+pre-existing Markdown hard-break trailing spaces in this exact pending diff;
+record them but do not alter anything until the private TAR in Step 3 is
+verified. Task 3 removes those spaces together with the student-ID redaction,
+and its final `diff --check` must pass.
 
 - [ ] **Step 3: Create the byte-for-byte private TAR**
 
@@ -348,7 +371,9 @@ Expected: every unnecessary student ID is identified before editing.
 Keep team-member names only where needed for honest ownership attribution.
 Remove student IDs from Markdown and regenerate affected DOCX files from their
 reviewed source or by exact document editing. Do not change contribution
-percentages, names, measured results, or project ownership.
+percentages, names, measured results, or project ownership. Normalize the
+pre-existing Markdown hard-break trailing spaces so the final staged diff
+passes `git diff --check`.
 
 Expected: the technical meaning and team contribution table remain intact.
 
