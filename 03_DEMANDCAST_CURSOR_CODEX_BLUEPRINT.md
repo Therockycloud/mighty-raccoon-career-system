@@ -1,17 +1,22 @@
 # DemandCast — Cursor + Codex Implementation Blueprint
 
-> Status: architecture approved; implementation blueprint draft for user review
+> Status: architecture approved; active under career-system GOAL_DELIVERY mode
 > Audience: Phạm Hoàng Hải (Mighty Raccoon), Cursor, and Codex
 > Project type: individual portfolio project
 > Language: English for code, documentation, commits, APIs, and public artifacts
-> Default operating mode: local-first, free-first, batch forecasting
+> Default operating mode: local-first, free-first, batch forecasting, **GOAL_DELIVERY**
 > Scope: Stage 0 through Stage 4, with measurable stop gates between stages
+> Delivery contract: career-system `shared/SELF_REVIEW_PROTOCOL.md`
 
 ---
 
 ## 0. How to use this document
 
-This file is the source of truth for DemandCast. Implement one stage at a time. A coding agent must read this entire file before modifying the DemandCast repository.
+This file is the source of truth for DemandCast. Implement stages in order. A coding agent must read this entire file before modifying the DemandCast repository.
+
+### Operating mode override (normative)
+
+The career system default is **GOAL_DELIVERY**. The human states a goal and checks the final result. Wherever this blueprint says “STOP awaiting human approval,” “wait for human approval,” “ask before push,” or shows a human/self-review gate between stages, the agent MUST run the delivery loop in `shared/SELF_REVIEW_PROTOCOL.md` (vendored after bootstrap): execute → verify → audit → evidence → self-review → seal → ship. Continue across stages when the goal is end-to-end. Commit, push, and deploy as needed. Only catastrophic hard stops require a goal that names them.
 
 The project deliberately separates:
 
@@ -24,16 +29,16 @@ The word **demand** in the product name is shorthand. The dataset records invoic
 
 ### Non-negotiable agent rules
 
-- Do not change the dataset, target grain, forecast horizon, or primary metrics without human approval.
-- Do not build multiple stages in one pass.
-- Do not add cloud services, paid APIs, distributed infrastructure, a feature store, Kubernetes, or a deep model unless the relevant evidence gate in this document is met and approved.
+- Do not change the dataset, target grain, forecast horizon, or primary metrics unless the goal explicitly renames those locked fields.
+- Seal each stage before entering the next; continue automatically when the goal is multi-stage delivery.
+- Do not add cloud services, paid APIs, distributed infrastructure, a feature store, Kubernetes, or a deep model unless the relevant evidence gate in this document is met and sealed (and paid spend stays within program rules).
 - Do not expose customer-level or invoice-level data in the API, dashboard, screenshots, logs, or portfolio.
 - Do not call inventory outputs “production recommendations.” They are synthetic scenario outputs.
 - Do not fabricate experiment results, latency numbers, uptime, model wins, costs, screenshots, or business impact.
 - Do not optimize on the final lockbox folds.
-- Do not commit, push, deploy, publish, archive, or modify GitHub settings unless the human explicitly asks in a separate instruction.
+- Commit, push, deploy, and publish when required to finish the stated goal; do not ask for separate push permission. Catastrophic hard stops in `SELF_REVIEW_PROTOCOL.md` still apply.
 - Keep raw data immutable. A cleaning bug is fixed by creating a new processed dataset version, never by editing raw files.
-- If the current repository conflicts with this blueprint, stop, describe the conflict, and ask for a decision.
+- If the current repository conflicts with this blueprint, resolve within blueprint constraints when possible; otherwise stop with an exact conflict report in the final handoff.
 
 ---
 
@@ -92,18 +97,18 @@ flowchart LR
     BATCH --> SYN["Synthetic inventory sandbox"]
     DAILY --> MON["Quality + delayed forecast monitoring"]
     BATCH --> MON
-    MON --> REVIEW["Human review; no auto-promotion"]
+    MON --> REVIEW["Self-review seal; no silent auto-promotion"]
 ```
 
 ```mermaid
 flowchart LR
-    S0["Stage 0: data contract"] --> G0{"Human gate"}
+    S0["Stage 0: data contract"] --> G0{"Self-review gate"}
     G0 --> S1["Stage 1: baselines"]
-    S1 --> G1{"Human gate"}
+    S1 --> G1{"Self-review gate"}
     G1 --> S2["Stage 2: quantile model"]
-    S2 --> G2{"Human gate"}
+    S2 --> G2{"Self-review gate"}
     G2 --> S3["Stage 3: batch product"]
-    S3 --> G3{"Human gate"}
+    S3 --> G3{"Self-review gate"}
     G3 --> S4["Stage 4: reliability"]
 ```
 

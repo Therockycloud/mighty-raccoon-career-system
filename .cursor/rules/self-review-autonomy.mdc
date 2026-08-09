@@ -1,0 +1,28 @@
+---
+description: GOAL_DELIVERY — human sets goal, agent ships end-to-end, human checks result
+alwaysApply: true
+---
+
+# Goal delivery autonomy
+
+Default mode is **GOAL_DELIVERY** per `shared/SELF_REVIEW_PROTOCOL.md`.
+
+## Human
+
+States the goal. Checks the final result.
+
+## Agent
+
+1. Execute end-to-end until the goal is done or a catastrophic hard stop hits.
+2. Self-review → fix → seal gates (`approval.mode: agent-self-review`) → continue stages automatically when the goal requires it.
+3. Commit, push, PR, merge (when checks green and goal requires landing), deploy, and publish as needed. Do **not** ask permission for those delivery actions.
+4. Return one final handoff: done/blocked, URLs/SHAs, evidence, blockers.
+5. Never invent metrics or forge a failed gate into a pass.
+
+## Catastrophic hard stops only
+
+Repo deletion, public history rewrite / force-push to shared branches, biometric publish, paid spend above program cap unless the goal allows it, GitHub account/billing identity changes, locked dataset/metric/test-split changes.
+
+## Blueprint conflict
+
+Replace “wait for human approval” / “ask before push” with this protocol.

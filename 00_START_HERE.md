@@ -40,16 +40,18 @@ The personal-social system—Facebook, Instagram, X/Threads, TikTok, YouTube, pe
 | `shared/DECISION_LOG_TEMPLATE.md` | All | Architecture decisions and reversal triggers |
 | `shared/GATE_RECEIPT_TEMPLATE.yaml` | AI projects | Machine-verifiable stage approval and immutable source/evidence handoff |
 | `shared/GATE_RECEIPT_SCHEMA.json` | AI projects | JSON Schema for pending/approved receipt shape and hash-chain fields |
+| `shared/SELF_REVIEW_PROTOCOL.md` | All agents | GOAL_DELIVERY: human sets goal; agent ships end-to-end; human checks result |
 
 ## Required reading order
 
 1. Read the design summary in `docs/superpowers/specs/2026-07-28-mighty-raccoon-career-system-design.md`.
-2. Review `01_GITHUB_CLEANUP_IMPLEMENTATION_SPEC.md`.
-3. Review `04_PORTFOLIO_IMPLEMENTATION_SPEC.md`.
-4. Choose one AI project; do not execute GroundedVN and DemandCast simultaneously.
-5. Copy `shared/PROJECT_STATE_TEMPLATE.md` into the selected project.
-6. Use `shared/GATE_RECEIPT_TEMPLATE.yaml` after each clean, immutable stage verification.
-7. Execute one milestone prompt at a time.
+2. Read `shared/SELF_REVIEW_PROTOCOL.md` (GOAL_DELIVERY autonomy).
+3. Review `01_GITHUB_CLEANUP_IMPLEMENTATION_SPEC.md`.
+4. Review `04_PORTFOLIO_IMPLEMENTATION_SPEC.md`.
+5. Choose one AI project; do not execute GroundedVN and DemandCast simultaneously unless the goal explicitly requires both.
+6. Copy `shared/PROJECT_STATE_TEMPLATE.md` into the selected project.
+7. Use `shared/GATE_RECEIPT_TEMPLATE.yaml` after each clean, immutable stage verification; continue and ship under the delivery loop.
+8. Execute the stated goal end-to-end; return one final result handoff for human checking.
 
 ## Global safety rules
 
@@ -59,9 +61,9 @@ The personal-social system—Facebook, Instagram, X/Threads, TikTok, YouTube, pe
 - Never rewrite public Git history in this program.
 - Never display an unverified metric.
 - Never describe team work as solo work.
-- Never publish content without Hải’s review.
-- Never add paid infrastructure without an evidence-backed need and explicit approval.
-- Never promote an AI project to the next architecture stage without the required gate evidence.
+- Default operating mode is **GOAL_DELIVERY**: the human states a goal; agents implement, self-review, seal gates, commit, push, and deploy as needed; the human only checks the final result. Public claims still require a sealed evidence packet.
+- Never add paid infrastructure above the program budget cap unless the goal explicitly allows paid spend.
+- Never promote an AI project to the next architecture stage without a sealed gate receipt. Catastrophic hard stops in `shared/SELF_REVIEW_PROTOCOL.md` still require a goal that names that action.
 
 ## Professional surface model
 
@@ -102,8 +104,10 @@ Complexity is added only after a measured trigger.
 
 ## Current status
 
-Design: approved in conversation
-Written specification: awaiting user review
-Implementation plan: not started
-GitHub writes: not started
-Portfolio implementation: not started
+Design: approved
+Operating mode: **GOAL_DELIVERY** (see `shared/SELF_REVIEW_PROTOCOL.md`)
+Human role: set goals, check results
+Agent role: execute, verify, seal, commit, push, deploy end-to-end
+Written specification: active for agent execution
+Implementation: agent-driven under self-review seals
+GitHub writes / portfolio publish: allowed when required to finish a stated goal (catastrophic hard stops excepted)

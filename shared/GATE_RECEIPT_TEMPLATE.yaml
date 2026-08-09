@@ -40,6 +40,7 @@ accepted:
   artifactOrPublisherSha256: ""
 
 approval:
+  mode: agent-self-review
   actor: ""
   approvedAt: null
   phrase: ""

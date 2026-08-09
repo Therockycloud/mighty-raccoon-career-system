@@ -31,18 +31,20 @@ Do not divide the seven project hours between GroundedVN and DemandCast in the s
 
 ## 3. Twenty-week sequence
 
-### Week 0 — specification review
+### Week 0 — bootstrap under SELF_REVIEW
 
 Outputs:
 
-- Approve or revise all files in this repository.
-- Confirm LinkedIn URL and résumé availability.
-- Confirm GitHub write targets and archive list.
-- Create the implementation plan for Codex-delivered work.
+- Treat this repository as active under `shared/SELF_REVIEW_PROTOCOL.md`.
+- Confirm LinkedIn URL and résumé availability when needed for portfolio copy.
+- Confirm GitHub write targets and archive list before any external mutation.
+- Create the implementation plan for Codex-delivered work; agent may self-seal the plan gate when checklists pass.
 
 Gate:
 
-- No GitHub or deployment mutation before approval.
+- GitHub/deployment mutations are allowed when required to finish a stated goal.
+- Catastrophic hard stops (repo deletion, history rewrite, biometrics, paid over cap, account/billing identity) still need a goal that names them.
+- Stage and content gates are agent-sealed; human checks final results only.
 
 ### Weeks 1–2 — GitHub cleanup
 

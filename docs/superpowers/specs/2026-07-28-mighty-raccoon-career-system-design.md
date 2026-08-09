@@ -4,7 +4,7 @@ Date: 2026-07-28
 Owner: Phạm Hoàng Hải
 Secondary brand: Mighty Raccoon
 GitHub account: `Therockycloud`
-Status: approved design, awaiting written-spec review
+Status: approved design; default operating mode GOAL_DELIVERY
 
 ## 1. Decision summary
 
@@ -116,17 +116,17 @@ Out of scope:
 flowchart LR
     A["Verified project evidence"] --> B["Evidence packet + claim ledger"]
     B --> C["Local AI-assisted draft"]
-    C --> D{"Human review"}
-    D -->|Reject| C
-    D -->|Approve article| E["Portfolio MDX PR"]
-    D -->|Approve short form| F["LinkedIn manual/native schedule"]
+    C --> D{"Agent self-review seal"}
+    D -->|Reject / fix| C
+    D -->|Seal article| E["Portfolio MDX ready"]
+    D -->|Seal short form| F["LinkedIn draft ready"]
     E --> G["Sites production deployment"]
     G --> H["Canonical article URL"]
     H --> F
     H --> I["GitHub release link when useful"]
 ```
 
-No content generator can publish. Missing evidence becomes a question, not an invented claim.
+No content generator can invent claims. Missing evidence becomes a question, not an invented claim. Under **GOAL_DELIVERY**, agents commit/push/deploy when the goal requires a shipped artifact. Stage gates use agent self-review by default (`shared/SELF_REVIEW_PROTOCOL.md`). Catastrophic hard stops remain.
 
 ## 7. Responsibility and deliverables
 
@@ -147,7 +147,9 @@ No content generator can publish. Missing evidence becomes a question, not an in
 - `05_CAREER_ROADMAP.md`
 - evidence packet;
 - project state;
-- decision log.
+- decision log;
+- gate receipts;
+- `shared/SELF_REVIEW_PROTOCOL.md` (default autonomy).
 
 ## 8. GitHub cleanup design
 

@@ -155,8 +155,11 @@
     "approval": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["actor", "approvedAt", "phrase"],
+      "required": ["mode", "actor", "approvedAt", "phrase"],
       "properties": {
+        "mode": {
+          "enum": ["agent-self-review", "human"]
+        },
         "actor": { "type": "string" },
         "approvedAt": { "type": ["string", "null"] },
         "phrase": { "type": "string" }
@@ -242,6 +245,9 @@
           },
           "approval": {
             "properties": {
+              "mode": {
+                "enum": ["agent-self-review", "human"]
+              },
               "actor": { "minLength": 1 },
               "approvedAt": {
                 "type": "string",

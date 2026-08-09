@@ -54,7 +54,7 @@ Identity rules:
   - One honest “currently building” overview that groups GroundedVN and DemandCast without invented results.
 - Replace the “currently building” overview with full GroundedVN and DemandCast case studies only after verified releases exist.
 - Publish long technical articles as local MDX content.
-- Generate evidence-bound LinkedIn drafts, with mandatory human review and manual/native scheduling.
+- Generate evidence-bound LinkedIn drafts; agent self-reviews against the claim ledger, then leaves a draft for manual/native LinkedIn scheduling (no auto-post).
 - Generate RSS, sitemap, metadata, and social preview images at build time.
 - Meet explicit accessibility, performance, and content-integrity gates.
 
@@ -65,8 +65,8 @@ Version 1 does not include:
 - A runtime CMS, database, authentication system, comments, likes, or user accounts.
 - Facebook, Instagram, X, Threads, TikTok, YouTube, or personal-life content.
 - Automatic LinkedIn posting.
-- An autonomous content agent.
-- Unreviewed AI-written technical claims.
+- Content that invents or strengthens claims beyond a sealed evidence packet.
+- Unverified AI-written technical claims (SELF_REVIEW seals only evidence-bound copy).
 - Heavy WebGL, particle backgrounds, 3D scenes, autoplay media, or decorative animation.
 - GitHub statistics cards, badge walls, skill progress bars, or a long icon cloud.
 - A custom domain. The initial release uses the Sites production URL.
@@ -292,7 +292,8 @@ MDX claim-ID contract:
 - Metrics, percentages, latency/cost values, benchmark comparisons, and quantified
   ownership claims in public MDX must use this component. The MDX lint pass flags
   common quantitative patterns outside code blocks and approved metadata, and
-  human review covers claims that static analysis cannot classify.
+  agent self-review (plus build failure on unknown/rejected claims) covers claims
+  that static analysis cannot classify.
 - A result-free `building` overview without an evidence packet cannot use
   `EvidenceClaim`.
 
@@ -313,10 +314,11 @@ Flow:
    - a LinkedIn draft;
    - a claim ledger;
    - questions for missing evidence.
-3. Hải reviews the wording and evidence.
-4. The canonical article is committed through a reviewable change.
-5. The approved source state is saved and deployed through the Sites workflow.
-6. LinkedIn is posted manually or through LinkedIn’s native scheduler.
+3. Agent self-reviews wording against the sealed evidence packet / claim ledger
+   (career-system `SELF_REVIEW` mode). Fail or fix any strengthened claim.
+4. The canonical article is committed as a reviewable change with gate notes.
+5. Deploy through the Sites workflow when the goal’s Definition of Done includes a live site (GOAL_DELIVERY).
+6. Prepare LinkedIn drafts for manual/native scheduling; include them in the final handoff (no silent auto-post unless an authorized API is available in-session and the goal asks for posting).
 7. The GitHub release links back to the canonical article when useful.
 
 Publication cadence:

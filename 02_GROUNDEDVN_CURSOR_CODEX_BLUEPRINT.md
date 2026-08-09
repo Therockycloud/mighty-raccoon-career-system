@@ -1,10 +1,11 @@
 # GroundedVN — Cursor and Codex Implementation Blueprint
 
-> **Status:** Draft for review; implementation not started
+> **Status:** Active under career-system GOAL_DELIVERY mode
 > **Audience:** Phạm Hoàng Hải (“Mighty Raccoon”), Cursor, Codex, reviewers, and future collaborators
 > **Working language:** English for code, documentation, commits, issues, and evaluation artifacts
 > **Normative terms:** **MUST**, **MUST NOT**, **SHOULD**, and **MAY** are requirements with their usual RFC-style meanings
-> **Last reviewed:** 2026-07-28
+> **Last reviewed:** 2026-08-09
+> **Operating mode:** `GOAL_DELIVERY` — see career-system `shared/SELF_REVIEW_PROTOCOL.md`
 
 ## 1. How to use this blueprint
 
@@ -13,8 +14,22 @@ numbered stages, with Stage 2 split into development gate 2A and separately
 authorized test gate 2B, from a small retrieval baseline to an optional
 senior-level local reference system.
 
-An agent receives only one stage prompt at a time. Before using a prompt, the
-human fills every `<REQUIRED_...>` placeholder. The agent MUST:
+### Operating mode override (normative)
+
+The career system default is **GOAL_DELIVERY**. The human states a goal and
+checks the final result. Wherever this blueprint says to stop and wait for
+human approval, or to ask before commit/push/deploy, the agent MUST instead
+run the delivery loop in `shared/SELF_REVIEW_PROTOCOL.md` (or the vendored
+copy under `docs/contracts/career-system/` after Stage 0 bootstrap): execute →
+verify → audit → evidence → self-review → seal → ship. The agent MAY record
+the exact approval phrase below with `approval.mode: agent-self-review`,
+continue across stages when the goal requires it, and commit/push/deploy as
+needed. Only catastrophic hard stops in that protocol require a goal that
+names the dangerous action.
+
+An agent receives a goal (often one stage; may be multi-stage end-to-end).
+Before using a prompt, every `<REQUIRED_...>` placeholder MUST be filled (by
+the human or by the agent from repository state when unambiguous). The agent MUST:
 
 1. Read this entire file before editing code.
 2. Compute this file's SHA-256 and compare it with
@@ -28,7 +43,9 @@ human fills every `<REQUIRED_...>` placeholder. The agent MUST:
 6. Run the required tests and evaluations.
 7. Save raw results and machine-readable evidence.
 8. Report observed results exactly; it MUST NOT invent, round up, or “estimate” metrics.
-9. Stop at the stage gate and wait for human approval.
+9. Seal the stage gate under GOAL_DELIVERY when the checklist passes; continue
+   or ship as the goal requires. If the checklist fails after bounded repair,
+   stop with a pending/rejected receipt — do not forge a pass.
 
 An agent MUST NOT:
 
@@ -36,9 +53,9 @@ An agent MUST NOT:
 - add frameworks, services, model providers, file formats, or UI features outside the active stage;
 - tune against the frozen test split;
 - claim official MIRACL results from a sampled or candidate-pooled corpus;
-- commit, push, publish, deploy, buy API credits, create cloud resources, or change GitHub settings unless a human explicitly authorizes that action in the same instruction;
+- perform catastrophic hard-stop actions from `SELF_REVIEW_PROTOCOL.md` unless the goal names them; ordinary commit/push/deploy for a stated goal is allowed;
 - expose private documents, prompts, secrets, raw user text, or personally identifiable information in logs or evaluation artifacts;
-- progress to a later stage because it “looks straightforward.”
+- progress to a later stage because it “looks straightforward,” or without a sealed gate receipt.
 
 The bootstrap sources for the shared contracts are:
 
@@ -48,6 +65,7 @@ The bootstrap sources for the shared contracts are:
 /Users/konalyn/Documents/dev/mighty-raccoon-career-system/shared/DECISION_LOG_TEMPLATE.md
 /Users/konalyn/Documents/dev/mighty-raccoon-career-system/shared/GATE_RECEIPT_TEMPLATE.yaml
 /Users/konalyn/Documents/dev/mighty-raccoon-career-system/shared/GATE_RECEIPT_SCHEMA.json
+/Users/konalyn/Documents/dev/mighty-raccoon-career-system/shared/SELF_REVIEW_PROTOCOL.md
 ```
 
 Stage 0 MUST copy these files byte-for-byte into
@@ -66,6 +84,7 @@ docs/contracts/career-system/EVIDENCE_PACKET_SPEC.md
 docs/contracts/career-system/DECISION_LOG_TEMPLATE.md
 docs/contracts/career-system/GATE_RECEIPT_TEMPLATE.yaml
 docs/contracts/career-system/GATE_RECEIPT_SCHEMA.json
+docs/contracts/career-system/SELF_REVIEW_PROTOCOL.md
 docs/contracts/career-system/manifest.json
 docs/gates/stage-<id>.yaml
 evidence/groundedvn-stage-<id>/packet.yaml
@@ -74,9 +93,10 @@ evidence/groundedvn-stage-<id>/claims.yaml
 
 `PROJECT_STATE.md` is the handoff and scope ledger. A gate receipt is valid only
 when it identifies the blueprint hash, a clean source commit, the public
-evidence-packet hash, the exact approval phrase, approver, and approval date.
+evidence-packet hash, the exact approval phrase, approver (human or
+agent-self-review actor), and approval date.
 
-The human approval phrase for advancing is:
+The approval phrase for advancing (issued by human **or** agent under SELF_REVIEW) is:
 
 ```text
 GROUNDEDVN STAGE <N> APPROVED. Proceed to Stage <N+1>.
@@ -223,7 +243,7 @@ Agents MUST implement these decisions unless the owner edits this blueprint.
 | Tool use | Generation has no tools, shell, network, database write, or side-effect capability | Limits blast radius |
 | Deployment | Local Compose is the only required deployment | No cloud bill or false production claim |
 | License | Project code: Apache-2.0; wholly project-authored evaluation data: CC BY 4.0 | Clear reuse terms; third-party data retains original terms |
-| Human gate | A hash-bound receipt approves every stage and every external mutation | Prevents autonomous scope and release drift |
+| Stage gate | A hash-bound receipt (agent-self-review or human) approves every stage; hard-stop external mutations still need an explicit human instruction | Prevents scope drift without mid-stage human waits |
 | Evidence | Raw predictions + manifest + summary; no screenshot-only metrics | Auditable results |
 | Logging | No raw document text or full query text by default | Privacy-preserving operations |
 | Public evidence | Sanitized Evidence Packets follow the vendored `docs/contracts/career-system/EVIDENCE_PACKET_SPEC.md` | Recruiter-inspectable claims without publishing private data |

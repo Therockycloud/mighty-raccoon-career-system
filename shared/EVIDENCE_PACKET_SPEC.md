@@ -1,6 +1,7 @@
 # Evidence Packet Specification
 
-An evidence packet is the machine-readable and human-reviewable source for public technical claims.
+An evidence packet is the machine-readable source for public technical claims.
+Under career-system `SELF_REVIEW` mode, agents verify and seal packets without mid-stage human approval; public claims still require a sealed packet and gate receipt.
 
 ## Required structure
 

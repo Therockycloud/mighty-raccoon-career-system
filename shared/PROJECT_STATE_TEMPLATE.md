@@ -30,7 +30,16 @@
 - [ ] Source commit matches and worktree is clean
 - [ ] Required data/license verified
 - [ ] Baseline or dependency available
-- [ ] User approval recorded
+- [ ] Gate sealed under self-review (`approval.mode: agent-self-review`) or explicit human phrase
+
+## Self-review seal
+
+- Mode: `GOAL_DELIVERY` (see career-system `shared/SELF_REVIEW_PROTOCOL.md`)
+- Checklist result: pass | fail | blocked
+- Repair passes used:
+- Gate receipt path/hash:
+- Ship actions taken (commit/push/deploy URLs):
+- Do not ask the human for mid-delivery process approval when the checklist is objectively green.
 
 ## Required verification
 
@@ -61,4 +70,6 @@ exact commands go here
 - Verified evidence packet/hash:
 - Gate receipt path/hash:
 - Remaining work:
-- Do not begin the next milestone until:
+- Next unlocked stage (if sealed):
+- Hard-stop blockers (if any):
+- Do not begin the next milestone until the current gate is sealed or an explicit multi-stage delivery instruction covers it.
