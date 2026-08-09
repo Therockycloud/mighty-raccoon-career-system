@@ -38,18 +38,22 @@ export default function WorkIndexPage() {
             const thumb = thumbs[project.slug];
             return (
               <Link key={project.slug} href={project.href} className="project-row">
-                <div>
+                <div className="project-copy">
                   <p className="meta">{project.role}</p>
                   <h3>{project.title}</h3>
                   <p className="claim">{project.problem}</p>
                   {project.claims.slice(0, 1).map((claim) => (
-                    <p key={claim.text} className="claim" style={{ marginTop: "0.75rem" }}>
+                    <p
+                      key={claim.text}
+                      className="claim"
+                      style={{ marginTop: "0.75rem" }}
+                    >
                       <strong>Evidence: </strong>
                       {claim.evidence}
                     </p>
                   ))}
                 </div>
-                <div>
+                <div className="project-media">
                   {thumb && (
                     <div className="thumb">
                       <Image

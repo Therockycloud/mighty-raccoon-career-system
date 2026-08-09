@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 export default function DemandCastPage() {
   return (
     <PageShell current="work">
-      <article className="section shell prose">
+      <article className="section shell prose wide">
         <p className="meta">Case study · Solo · Forecasting / ML judgment</p>
         <h1>DemandCast</h1>
         <p>
@@ -84,11 +84,10 @@ export default function DemandCastPage() {
           caption="Evaluation surface — lockbox_consumed=true; Stage 1 champion retained."
         />
 
-        <Figure
-          src="/images/demandcast/dc-api-docs.png"
-          alt="DemandCast FastAPI OpenAPI documentation listing read-only forecast endpoints"
-          caption="Read-only FastAPI contract — batch forecast product surface."
-        />
+        <p className="link-row">
+          <a href="https://github.com/Therockycloud/DemandCast">Repository</a>
+          <a href="/images/demandcast/dc-api-docs.png">API docs capture</a>
+        </p>
 
         <h2>Limitations</h2>
         <p>

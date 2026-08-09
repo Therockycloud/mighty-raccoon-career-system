@@ -35,24 +35,45 @@ export default function HomePage() {
             </a>
           </div>
         </div>
-        <div className="hero-visual">
-          <figure className="figure" style={{ margin: 0 }}>
-            <div className="figure-frame">
+      </section>
+
+      <section className="evidence-band" aria-label="Live product evidence">
+        <div className="shell">
+          <p className="band-label">Evidence · DemandCast running publisher</p>
+          <figure>
+            <div className="evidence-matte">
               <Image
                 src="/images/demandcast/dc-ui-overview.png"
                 alt="Live DemandCast evidence dashboard proving the forecast publisher in use"
                 width={1440}
                 height={900}
                 priority
-                sizes="(max-width: 900px) 100vw, 34rem"
+                sizes="(max-width: 900px) 100vw, 72rem"
               />
             </div>
             <figcaption>
-              Live proof — DemandCast evidence UI after Stage 2B lockbox reject;
-              publisher remains zero + empirical×0.75.
+              Live proof after Stage 2B lockbox reject — publisher remains{" "}
+              <code>zero + empirical×0.75</code>.
             </figcaption>
           </figure>
         </div>
+      </section>
+
+      <section className="brand-plate shell" aria-label="Identity">
+        <figure>
+          <div className="plate-frame">
+            <Image
+              src="/images/brand/og-home.png"
+              alt="Phạm Hoàng Hải identity plate — AI Engineer, Mighty Raccoon"
+              width={1456}
+              height={816}
+              sizes="(max-width: 900px) 100vw, 42rem"
+            />
+          </div>
+          <figcaption>
+            {site.brandSecondary} · evaluated systems, not demo theatre.
+          </figcaption>
+        </figure>
       </section>
 
       <section className="section shell">
@@ -66,7 +87,7 @@ export default function HomePage() {
             const thumb = thumbs[project.slug];
             return (
               <Link key={project.slug} href={project.href} className="project-row">
-                <div>
+                <div className="project-copy">
                   <p className="meta">
                     {project.status === "published" ? "Case study" : "Building"} ·{" "}
                     {project.role}
@@ -74,7 +95,7 @@ export default function HomePage() {
                   <h3>{project.title}</h3>
                   <p className="claim">{project.problem}</p>
                 </div>
-                <div>
+                <div className="project-media">
                   {thumb && (
                     <div className="thumb">
                       <Image
@@ -86,9 +107,6 @@ export default function HomePage() {
                       />
                     </div>
                   )}
-                  <p className="claim" style={{ marginTop: "0.75rem" }}>
-                    {project.summary}
-                  </p>
                 </div>
               </Link>
             );

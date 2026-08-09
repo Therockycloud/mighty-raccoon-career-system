@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 export default function GroundedVNPage() {
   return (
     <PageShell current="work">
-      <article className="section shell prose">
+      <article className="section shell prose wide">
         <p className="meta">Case study · Solo · Applied AI / RAG</p>
         <h1>GroundedVN</h1>
         <p>
@@ -26,12 +26,6 @@ export default function GroundedVNPage() {
           src="/images/groundedvn/gv-verify-data.png"
           alt="Terminal output of groundedvn verify-data showing pilot suite passed with checksums"
           caption="Live CLI proof — verify-data on groundedvn-bilingual-v1-pilot (12 docs / 36 cases, passed)."
-        />
-
-        <Figure
-          src="/images/groundedvn/gv-repo-surface.png"
-          alt="GroundedVN GitHub repository page showing Stage 4 README and project layout"
-          caption="Public repository after Stage 4 README seal — source of truth for claims."
         />
 
         <div className="evidence-box">
@@ -80,12 +74,15 @@ export default function GroundedVNPage() {
           </div>
         </div>
 
+        <p className="link-row">
+          <a href="https://github.com/Therockycloud/GroundedVN">Repository</a>
+        </p>
+
         <h2>Limitations</h2>
         <p>
           This is a portfolio-grade local-first system, not a multi-tenant SaaS
           uptime claim. Further complexity requires a new ADR; Stage 4 is complete
-          for the named extension set only. Live CLI search screenshot is deferred
-          until a sealed local index replay is captured without inventing UI.
+          for the named extension set only.
         </p>
       </article>
     </PageShell>
