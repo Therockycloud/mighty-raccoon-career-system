@@ -15,12 +15,12 @@ const thumbs: Record<string, { src: string; alt: string }> = {
     alt: "GroundedVN verify-data CLI output showing pilot suite passed",
   },
   demandcast: {
-    src: "/images/demandcast/dc-ui-overview.png",
-    alt: "DemandCast evidence dashboard overview",
+    src: "/images/demandcast/dc-ui-evaluation.png",
+    alt: "DemandCast evaluation surface with lockbox consumed",
   },
   "smart-parking": {
-    src: "/images/smart-parking/sp-repo-surface.png",
-    alt: "Smart Parking team repository on GitHub",
+    src: "/images/smart-parking/sp-readme-surface.png",
+    alt: "Smart Parking README documentation on GitHub",
   },
 };
 

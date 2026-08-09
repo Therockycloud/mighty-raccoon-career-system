@@ -74,7 +74,7 @@ export const projects: Project[] = [
   {
     slug: "smart-parking",
     title: "Smart Parking Security",
-    role: "Team project — CV + APIs (attributable modules documented in repo)",
+    role: "Team project · CV + APIs",
     status: "published",
     summary:
       "Team-built parking security system with CV verification, APIs, tests, and deployment tooling.",

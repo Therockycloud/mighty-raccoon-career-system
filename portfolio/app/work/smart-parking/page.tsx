@@ -22,9 +22,9 @@ export default function SmartParkingPage() {
 
         <Figure
           priority
-          src="/images/smart-parking/sp-repo-surface.png"
-          alt="GitHub repository page for the Smart Parking team project"
-          caption="Team repository surface — attribution stays collaborative, not solo."
+          src="/images/smart-parking/sp-readme-surface.png"
+          alt="Smart Parking README documentation describing the team project"
+          caption="README surface — team project; inspect the repo for module ownership detail."
         />
 
         <div className="evidence-box">

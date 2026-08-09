@@ -9,12 +9,12 @@ const thumbs: Record<string, { src: string; alt: string }> = {
     alt: "GroundedVN verify-data CLI proving pilot evaluation suite passed",
   },
   demandcast: {
-    src: "/images/demandcast/dc-ui-overview.png",
-    alt: "DemandCast evidence dashboard overview with serving publisher",
+    src: "/images/demandcast/dc-ui-evaluation.png",
+    alt: "DemandCast evaluation surface with lockbox_consumed true",
   },
   "smart-parking": {
-    src: "/images/smart-parking/sp-repo-surface.png",
-    alt: "Smart Parking team repository on GitHub",
+    src: "/images/smart-parking/sp-readme-surface.png",
+    alt: "Smart Parking README documentation on GitHub",
   },
 };
 
@@ -35,45 +35,6 @@ export default function HomePage() {
             </a>
           </div>
         </div>
-      </section>
-
-      <section className="evidence-band" aria-label="Live product evidence">
-        <div className="shell">
-          <p className="band-label">Evidence · DemandCast running publisher</p>
-          <figure>
-            <div className="evidence-matte">
-              <Image
-                src="/images/demandcast/dc-ui-overview.png"
-                alt="Live DemandCast evidence dashboard proving the forecast publisher in use"
-                width={1440}
-                height={900}
-                priority
-                sizes="(max-width: 900px) 100vw, 72rem"
-              />
-            </div>
-            <figcaption>
-              Live proof after Stage 2B lockbox reject — publisher remains{" "}
-              <code>zero + empirical×0.75</code>.
-            </figcaption>
-          </figure>
-        </div>
-      </section>
-
-      <section className="brand-plate shell" aria-label="Identity">
-        <figure>
-          <div className="plate-frame">
-            <Image
-              src="/images/brand/og-home.png"
-              alt="Phạm Hoàng Hải identity plate — AI Engineer, Mighty Raccoon"
-              width={1456}
-              height={816}
-              sizes="(max-width: 900px) 100vw, 42rem"
-            />
-          </div>
-          <figcaption>
-            {site.brandSecondary} · evaluated systems, not demo theatre.
-          </figcaption>
-        </figure>
       </section>
 
       <section className="section shell">
@@ -111,6 +72,27 @@ export default function HomePage() {
               </Link>
             );
           })}
+        </div>
+      </section>
+
+      <section className="evidence-band" aria-label="Live product evidence">
+        <div className="shell">
+          <p className="band-label">Evidence · DemandCast running publisher</p>
+          <figure>
+            <div className="evidence-matte evidence-matte-strip">
+              <Image
+                src="/images/demandcast/dc-ui-overview-strip.png"
+                alt="Cropped DemandCast evidence dashboard showing publisher and interval metadata"
+                width={1440}
+                height={432}
+                sizes="(max-width: 900px) 100vw, 72rem"
+              />
+            </div>
+            <figcaption>
+              Live proof after Stage 2B lockbox reject — publisher remains{" "}
+              <code>zero + empirical×0.75</code>.
+            </figcaption>
+          </figure>
         </div>
       </section>
     </PageShell>

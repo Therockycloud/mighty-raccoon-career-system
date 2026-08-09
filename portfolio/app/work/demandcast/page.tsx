@@ -74,7 +74,7 @@ export default function DemandCastPage() {
           </div>
           <div className="metric-item">
             <div className="value">6/6</div>
-            <div className="label">LightGBM fits (cap enforced)</div>
+            <div className="label">LightGBM fits used (cap ≤6)</div>
           </div>
         </div>
 
