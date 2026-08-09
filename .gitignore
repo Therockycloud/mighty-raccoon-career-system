@@ -2,3 +2,7 @@
 .worktrees/
 *.swp
 *.tmp
+portfolio/node_modules/
+portfolio/.next/
+portfolio/out/
+portfolio/content-ops/drafts/
