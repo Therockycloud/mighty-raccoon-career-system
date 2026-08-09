@@ -6,7 +6,11 @@ import "@fontsource/ibm-plex-mono/500.css";
 import "./globals.css";
 import { site } from "@/lib/site";
 
+const siteUrl =
+  process.env.NEXT_PUBLIC_SITE_URL ?? "https://portfolio-might-raccoon.vercel.app";
+
 export const metadata: Metadata = {
+  metadataBase: new URL(siteUrl),
   title: {
     default: site.title,
     template: `%s · ${site.name}`,
