@@ -18,6 +18,7 @@ export const metadata: Metadata = {
     description: site.description,
     type: "website",
     locale: "en_US",
+    images: [{ url: "/images/brand/og-home.png", width: 1456, height: 816 }],
   },
 };
 

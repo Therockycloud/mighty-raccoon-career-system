@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Figure } from "@/components/content/Figure";
 import { PageShell } from "@/components/layout/PageShell";
 
 export const metadata: Metadata = {
@@ -18,6 +19,13 @@ export default function SmartParkingPage() {
           service APIs, tests, and deployment tooling. Team work is never described
           as solo work; inspect the repository for ownership detail.
         </p>
+
+        <Figure
+          priority
+          src="/images/smart-parking/sp-repo-surface.png"
+          alt="GitHub repository page for the Smart Parking team project"
+          caption="Team repository surface — attribution stays collaborative, not solo."
+        />
 
         <div className="evidence-box">
           <strong>Source</strong>

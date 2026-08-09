@@ -138,6 +138,70 @@ img {
 .hero {
   padding: 4.5rem 0 3.5rem;
   border-bottom: 1px solid var(--rule);
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+  gap: 2rem;
+  align-items: end;
+}
+
+.hero-copy {
+  max-width: 36rem;
+}
+
+.hero-visual {
+  opacity: 0;
+  transform: translateY(12px);
+  animation: rise 700ms ease forwards 120ms;
+}
+
+@keyframes rise {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.figure {
+  margin: 1.5rem 0 2rem;
+}
+
+.figure-frame {
+  border: 1px solid var(--rule);
+  background: #fff;
+  overflow: hidden;
+  line-height: 0;
+}
+
+.figure-frame img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.figure figcaption {
+  margin-top: 0.65rem;
+  font-size: 0.88rem;
+  color: var(--ink-muted);
+  max-width: 42rem;
+  line-height: 1.45;
+}
+
+.project-row .thumb {
+  border: 1px solid var(--rule);
+  background: #fff;
+  overflow: hidden;
+  line-height: 0;
+}
+
+.project-row .thumb img {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: transform 320ms ease;
+}
+
+.project-row:hover .thumb img {
+  transform: scale(1.02);
 }
 
 .hero .eyebrow {
@@ -344,13 +408,14 @@ img {
 }
 
 @media (max-width: 720px) {
+  .hero {
+    grid-template-columns: 1fr;
+    padding-top: 3rem;
+  }
+
   .project-row {
     grid-template-columns: 1fr;
     gap: 0.5rem;
-  }
-
-  .hero {
-    padding-top: 3rem;
   }
 }
 
@@ -362,5 +427,10 @@ img {
   * {
     transition: none !important;
     animation: none !important;
+  }
+
+  .hero-visual {
+    opacity: 1;
+    transform: none;
   }
 }

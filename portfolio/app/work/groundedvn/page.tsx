@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Figure } from "@/components/content/Figure";
 import { PageShell } from "@/components/layout/PageShell";
 
 export const metadata: Metadata = {
@@ -20,6 +21,13 @@ export default function GroundedVNPage() {
           is weak.
         </p>
 
+        <Figure
+          priority
+          src="/images/groundedvn/gv-repo-surface.png"
+          alt="GroundedVN GitHub repository page showing Stage 4 README and project layout"
+          caption="Public repository after Stage 4 README seal — source of truth for claims."
+        />
+
         <div className="evidence-box">
           <strong>Sealed evidence</strong>
           Stage 4 reviewed gate · JOBS / ALIASES / RBAC / DELETION / RECOVERY /
@@ -35,12 +43,12 @@ export default function GroundedVNPage() {
           citation integrity, or failure modes. GroundedVN prioritizes those
           contracts over a polished consumer UI.
         </p>
-        <ul>
-          <li>No invented Vietnamese public benchmark.</li>
-          <li>Pending evaluation cases excluded from scoring.</li>
-          <li>Cloud generation tags forbidden by default; local providers only.</li>
-          <li>Biometric/face data out of scope.</li>
-        </ul>
+
+        <Figure
+          src="/images/groundedvn/gv-arch-flow.png"
+          alt="GroundedVN architecture from workspace docs through hybrid retrieval to Stage 4 ops"
+          caption="Architecture plate — abstention and structural citations before ops."
+        />
 
         <h2>Decisions</h2>
         <ul>
@@ -65,17 +73,13 @@ export default function GroundedVNPage() {
             <div className="label">Named Stage 4 extension IDs</div>
           </div>
         </div>
-        <p>
-          Operable surface includes FastAPI search/answer, workspace auth,
-          rate/cost controls, prompt-injection suite, and recovery drills —
-          documented under <code>docs/</code> and <code>evidence/</code>.
-        </p>
 
         <h2>Limitations</h2>
         <p>
           This is a portfolio-grade local-first system, not a multi-tenant SaaS
           uptime claim. Further complexity requires a new ADR; Stage 4 is complete
-          for the named extension set only.
+          for the named extension set only. Live CLI search screenshot is deferred
+          until a sealed local index replay is captured without inventing UI.
         </p>
       </article>
     </PageShell>

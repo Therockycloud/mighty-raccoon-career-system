@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Figure } from "@/components/content/Figure";
 import { PageShell } from "@/components/layout/PageShell";
 
 export const metadata: Metadata = {
@@ -20,6 +21,13 @@ export default function DemandCastPage() {
           coverage failures.
         </p>
 
+        <Figure
+          priority
+          src="/images/demandcast/dc-ui-overview.png"
+          alt="DemandCast evidence dashboard showing forecast id and Stage 1 publisher"
+          caption="Live evidence UI — serving publisher zero+empirical×0.75 after Stage 2B reject."
+        />
+
         <div className="evidence-box">
           <strong>Sealed evidence</strong>
           Stage 2B lockbox consumed once · publisher retained{" "}
@@ -35,6 +43,12 @@ export default function DemandCastPage() {
           Customer/invoice identifiers never enter the modeling table, API, or UI.
           Inventory logic is an explicitly synthetic sandbox.
         </p>
+
+        <Figure
+          src="/images/demandcast/dc-arch-flow.png"
+          alt="DemandCast architecture flow from UCI dataset through evidence gate to batch API"
+          caption="Architecture plate — sealed pipeline labels only; no KPI overlays."
+        />
 
         <h2>Decisions</h2>
         <ul>
@@ -63,10 +77,18 @@ export default function DemandCastPage() {
             <div className="label">LightGBM fits (cap enforced)</div>
           </div>
         </div>
-        <p>
-          Serving publisher remains Stage 1 baselines. That is the correct senior
-          outcome for this protocol — not a silent threshold change.
-        </p>
+
+        <Figure
+          src="/images/demandcast/dc-ui-evaluation.png"
+          alt="DemandCast evaluation view with lockbox_consumed true and publisher fields"
+          caption="Evaluation surface — lockbox_consumed=true; Stage 1 champion retained."
+        />
+
+        <Figure
+          src="/images/demandcast/dc-api-docs.png"
+          alt="DemandCast FastAPI OpenAPI documentation listing read-only forecast endpoints"
+          caption="Read-only FastAPI contract — batch forecast product surface."
+        />
 
         <h2>Limitations</h2>
         <p>
