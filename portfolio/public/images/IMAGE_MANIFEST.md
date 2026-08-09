@@ -11,8 +11,9 @@
 | `groundedvn/gv-repo-surface.png` | A | **PASS** | Public GitHub + Stage 4 README |
 | `groundedvn/gv-verify-data.png` | A | **PASS** | Live `verify-data` CLI; suite passed with checksums |
 | `groundedvn/gv-arch-flow.png` | B | **PASS** (v2) | v1 rejected: invented streaming/caching copy |
-| `smart-parking/sp-repo-surface.png` | A | **PASS** | Team repo surface |
-| `brand/og-home.png` | B | **PASS** | Brand card; no fake metrics |
+| `smart-parking/sp-repo-surface.png` | A | demoted | GitHub chrome; link-only, not primary thumb |
+| `smart-parking/sp-readme-surface.png` | A | **PASS** | Clean README excerpt plate (team attribution honest; no chrome crop) |
+| `brand/og-home.png` | B | **PASS** | Brand card; no fake metrics (meta/OG; not on-page hero) |
 | `_rejected/*` | — | REJECT | Kept for audit trail only; never linked |
 
 ## Captions (ship with images)
@@ -22,5 +23,6 @@
 - dc-arch-flow: “DemandCast sealed pipeline — matches ADR/README architecture; no KPI overlays.”
 - gv-repo-surface: “GroundedVN public repository after Stage 4 README seal.”
 - gv-arch-flow: “GroundedVN retrieval → abstention → citations → Stage 4 ops.”
-- sp-repo-surface: “Smart Parking — team project; not solo-attributed.”
+- sp-readme-surface: “Smart Parking — team project README excerpt; not solo-attributed.”
+- sp-repo-surface: “Smart Parking — team project; not solo-attributed.” (demoted)
 - og-home: “Identity card for Phạm Hoàng Hải / Mighty Raccoon.”
