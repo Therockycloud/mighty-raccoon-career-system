@@ -5,8 +5,8 @@ import { projects, site } from "@/lib/site";
 
 const thumbs: Record<string, { src: string; alt: string }> = {
   groundedvn: {
-    src: "/images/groundedvn/gv-repo-surface.png",
-    alt: "GroundedVN GitHub repository showing Stage 4 documentation",
+    src: "/images/groundedvn/gv-verify-data.png",
+    alt: "GroundedVN verify-data CLI proving pilot evaluation suite passed",
   },
   demandcast: {
     src: "/images/demandcast/dc-ui-overview.png",

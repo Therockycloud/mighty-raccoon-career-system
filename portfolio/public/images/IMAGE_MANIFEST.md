@@ -9,6 +9,7 @@
 | `demandcast/dc-repo-surface.png` | A | **PASS** | Public GitHub proof |
 | `demandcast/dc-arch-flow.png` | B | **PASS** (v2) | v1 rejected: invented “stores” |
 | `groundedvn/gv-repo-surface.png` | A | **PASS** | Public GitHub + Stage 4 README |
+| `groundedvn/gv-verify-data.png` | A | **PASS** | Live `verify-data` CLI; suite passed with checksums |
 | `groundedvn/gv-arch-flow.png` | B | **PASS** (v2) | v1 rejected: invented streaming/caching copy |
 | `smart-parking/sp-repo-surface.png` | A | **PASS** | Team repo surface |
 | `brand/og-home.png` | B | **PASS** | Brand card; no fake metrics |

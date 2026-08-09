@@ -23,6 +23,12 @@ export default function GroundedVNPage() {
 
         <Figure
           priority
+          src="/images/groundedvn/gv-verify-data.png"
+          alt="Terminal output of groundedvn verify-data showing pilot suite passed with checksums"
+          caption="Live CLI proof — verify-data on groundedvn-bilingual-v1-pilot (12 docs / 36 cases, passed)."
+        />
+
+        <Figure
           src="/images/groundedvn/gv-repo-surface.png"
           alt="GroundedVN GitHub repository page showing Stage 4 README and project layout"
           caption="Public repository after Stage 4 README seal — source of truth for claims."
