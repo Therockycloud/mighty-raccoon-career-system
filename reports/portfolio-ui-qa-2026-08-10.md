@@ -5,8 +5,7 @@
 | Verdict | **PASS** |
 | Model | `claude-opus-5-thinking-high` |
 | Fallback used | no |
-| Live Vercel | https://portfolio-might-raccoon.vercel.app/ |
-| Live Pages | https://therockycloud.github.io/mighty-raccoon-career-system/ |
+| Live | https://portfolio-might-raccoon.vercel.app/ (Vercel only; Pages disabled) |
 | SHA | `638223b` |
 | Loop | `portfolio_ui_qa` stopped (green gate) |
 
